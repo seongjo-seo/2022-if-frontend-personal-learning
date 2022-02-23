@@ -1,8 +1,6 @@
 {
   "name": "final_project_test-2",
   "version": "1.0.0",
-  "description": "풀스택 A반 파이널 프젝 테스트",
-  "main": "index.js",
   "scripts": {
     "server": "nodemon src/main.js"
   },
@@ -25,6 +23,7 @@
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.18",
     "@types/supertest": "^2.0.11",
+    "ejs": "^3.1.6",
     "eslint": "^8.9.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.4.0",
@@ -33,13 +32,21 @@
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
+    "session-file-store": "^1.5.0",
     "supertest": "^6.2.2",
     "typescript": "^4.5.5"
   },
   "dependencies": {
     "body-parser": "^1.19.2",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "express-error-handler": "^1.1.0",
+    "express-session": "^1.17.2",
     "multer": "^1.4.4",
-    "pug": "^3.0.2"
+    "mysql": "^2.18.1",
+    "pbkdf2-password": "^1.2.1",
+    "pug": "^3.0.2",
+    "winston": "^3.6.0"
   }
 }

@@ -6,6 +6,7 @@ const upload = multer({ dest: 'uploads/' })
 
 const router = express.Router()
 
+//test용 id
 const USERS = {
   15: {
     nickname: 'foo',
@@ -41,7 +42,7 @@ router.param('id', async (req, res, next, value) => {
   }
 })
 
-// 이미지 프로필로 업로드 하는 라인 uploads -> url 해시링크 걸어주는 곳
+// 이미지 라인 uploads -> url 해시링크 걸어주는 곳
 router.get('/:id', (req, res) => {
   const resMimeType = req.accepts(['json', 'html'])
 
@@ -52,6 +53,7 @@ router.get('/:id', (req, res) => {
     res.render('user-profile', {
       nickname: req.user.nickname,
       userId: req.params.id,
+      // DB 연동할 때 url값 링크 걸어줘야 하는 부분
       profileImageURL: '/uploads/b10fea57a63cdda245719fe5018d49aa',
     })
   }
@@ -74,7 +76,7 @@ router.post('/:id/nickname', (req, res) => {
   res.send(`User nickname updated: ${nickname}`)
 })
 
-// 프로필 사진 다운로드 로직
+// 프로필 사진 업로드
 router.post('/:id/profile', upload.single('profile'), (req, res, next) => {
   const { user } = req
   const { filename } = req.file
