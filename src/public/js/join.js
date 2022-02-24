@@ -1,4 +1,3 @@
-//@ts-check <- 값 전달 어디로 받는지 확인하려고 추가한 것 에러 떠도 정상 코드로 작동되는 것입니다
 'use strict'
 
 // data 전달해줄 곳
@@ -16,11 +15,11 @@ const userId = document.querySelector('#userId'),
   userPhone = document.querySelector('#userPhone'),
   // 0123~~같은 우편번호 원 파일 변수명 zonecode
   zonecode = document.querySelector('#zonecode'),
-  // 주소 값 서울 관악구 봉천로xx ~~와 같이 주소값
+  // 주소 값 xx시 xx구 xx로xx ~~주소의 큰 주소값
   address = document.querySelector('#address'),
   // 추가 주소 <- ex 동~
   extraAddress = document.querySelector('#extraAddress'),
-  // 상세 주소 값 <- [ex]~~ 원룸 xxx호
+  // 상세 주소 값 <- [ex]~~ xx구 xx로 원룸 xxx호의 완전 상세 주소
   detailAddress = document.querySelector('#detailAddress'),
   // 회원가입 버튼 <- 클릭 값 전달하는 부분 다시 보기?
   joinBtn = document.querySelector('#button')
@@ -46,6 +45,8 @@ function join() {
     detailAddress: extraAddress.value,
   }
 
+  // fetch는 요청/응답을 진행해 준다.
+  // 여기서는 method를 post로 줘서 값을 갖고온다.
   fetch('/join', {
     // 호출 받을 때
     method: 'POST',

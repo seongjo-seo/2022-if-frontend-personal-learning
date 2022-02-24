@@ -3,7 +3,7 @@
 // 로그 값 찍어줄 곳 위치
 const logger = require('../config/logger')
 // DB 연동해주는 곳
-const User = require('../config/mysql')
+const User = require('../models/User')
 
 const output = {
   home: (req, res) => {
@@ -25,8 +25,9 @@ const output = {
   },
 }
 
-// 로그인 기능
+// api
 const process = {
+  // 로그인 기능
   // id, pw 확인
   login: async (req, res) => {
     const user = new User(req.body)
@@ -35,6 +36,7 @@ const process = {
     const url = {
       method: 'POST',
       path: '/login',
+      // error 처리
       status: response.err ? 400 : 200,
     }
 
@@ -43,6 +45,7 @@ const process = {
     return res.status(url.status).json(response)
   },
 
+  // 회원가입 기능
   // 저장
   join: async (req, res) => {
     const user = new User(req.body)
@@ -52,6 +55,7 @@ const process = {
     const url = {
       method: 'POST',
       path: '/join',
+      // error 처리
       status: response.err ? 409 : 201,
     }
 

@@ -2,6 +2,9 @@
 
 const db = require('../config/mysql')
 
+// 비밀번호 암호화를 위한 선언문
+// const bcrypt = require('bcrypt-nodejs')
+
 // #는 public에서 private로 변경해 준다.
 // static은 class에 바로 접근을 위해서
 class UserStorage {
@@ -13,8 +16,12 @@ class UserStorage {
       const query = 'SELECT * FROM usertbl WHERE userId = ?;'
       db.query(query, [userId], (err, data) => {
         // object 형식(?)
-        if (err) reject(`${err}`)
-        else resolve(data[0])
+        if (err) {
+          reject(`${err}`)
+          console.log(data)
+        } else {
+          resolve(data[0])
+        }
       })
     })
   }
@@ -22,6 +29,7 @@ class UserStorage {
   // id 저장
   static async save(userInfo) {
     return new Promise((resolve, reject) => {
+      // bcrypt.hash( userPw, null, null, function(err, hash))  hash 값 이용해서 저장은 이후에 하기
       const query =
         'INSERT INTO usertbl(userId, userName, userPw, userNick, userPhone, zonecode, address, detailAddress, extraAddress) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);'
       db.query(
@@ -44,6 +52,18 @@ class UserStorage {
           else resolve({ success: true })
         }
       )
+      // 추가 쿼리 필요시 작성부
+      // const query2 =
+      // ''
+      // db.query2(
+      //   query2,[
+
+      //   // err 처리
+      //   (err) => {
+      //     if (err) reject(`${err}`)
+      //     else resolve({ success: true })
+      //   }
+      // ])
     })
   }
 }
