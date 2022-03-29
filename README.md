@@ -1,2 +1,2 @@
-# final_project_test
-풀스택 A반 파이널 프젝 테스트
+# Sign Up + Sign In
+로그인 회원가입 [다음 지도 API로 데이터 저장]
